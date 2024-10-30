@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Check if the user is on a mobile device
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // Attempt to open the app with the custom URL scheme
+                window.location.href = "myapp://signup/ABC123";
+
+                // Fallback to App Store or Play Store after a delay
+                setTimeout(() => {
+                    if (/android/i.test(navigator.userAgent)) {
+                        // Redirect to Google Play Store for Android users
+                        window.location.href = "https://play.google.com/store/apps/details?id=com.cornerstone.propertyhealth";
+                    } else if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+                        // Redirect to App Store for iOS users
+                        window.location.href = "https://apps.apple.com/us/app/property-health-app/id6499225626";
+                    }
+                }, 2000); // Adjust delay if needed
+            } else {
+                // Message for non-mobile users
+                document.body.innerHTML = "<p>Please open this link on a mobile device to use the app.</p>";
+               
+            }
+        });
+    </script>
+</head>
+<body>
+    <p>Redirecting...</p>
+</body>
+</html>
